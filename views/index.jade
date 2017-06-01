@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  div(class='container')
+    h1= title
+    p Welcome to #{title}
+
+    h2 1. Copy and paste your CSV below:
+    h3 Origins
+    textarea(class="form-control" id='origins' rows="4" cols="50" placeholder='paste CSV of origins here')
+    h3 Destinations
+    textarea(class="form-control" id='dest' rows="4" cols="50" placeholder='paste CSV of destinations here')
+    
+    h2 2. Click here to import your CSV:
+    p
+      button(onclick='parseCsv()' class="btn btn-primary") Import CSV
+
+    h2 3. Origins:
+    p Address column:
+      select(class="form-control" id='originsColumns')
+    p Unique ID column:
+      select(class="form-control" id='originsId')
+
+
+    h2 4. Destinations:
+    p Address column:
+      select(class="form-control" id='destColumns')  
+    p Unique ID column:
+      select(class="form-control" id='destId')
+      
+    h2 5. Select distance matrix options:
+    p Travel mode:
+      select(class="form-control" id='travelMode')
+        option driving
+        option walking
+        option bicycling
+        option transit
+    p Units:
+      select(class="form-control" id='units')
+        option metric
+        option imperial
+    p Language:
+      select(class="form-control" id='language')
+        option en-US
+        option pt-BR
+    p Paste your Google API key here 
+      input(class="form-control" id='apiKey')
+    p (promise we won't store it; we don't even have a database for this site)
+          
+    h2 6. All set?
+    
+    button(id="calculate" onclick='calculate()' class="btn btn-primary") Calculate!
+
+    h2 Result
+    textarea(class="form-control" id='result' rows="4" cols="100" placeholder='result will display here')
+    
+    p
+      br
+      button(type="button" value="save" id="save" class="btn btn-primary") Download as CSV file
+      
+    p
+      hr
